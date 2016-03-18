@@ -46,6 +46,7 @@ dependencies {
 
 #### For Checkstyle
 `config/checkstyle/google_checks.xml` : Edit rulers
+
 `config/checkstyle/suppressions.xml` : Edit suppressions
 
 #### For Android Lint
@@ -64,3 +65,21 @@ Version : 1.0.1
 Date : 11/03/2016
 
 Are there any errors in these config, please feedback at [https://goo.gl/O2CX0D](https://goo.gl/O2CX0D)
+
+## Upgrade config version
+
+#### MAC
+
+Run script in `config` folder, Open terminal and enter `sh ` and move file `upgradeMacOS.sh` to terminal
+
+```
+sh /Users/pham.quy.hai/ProjectsCode/Framgia/framgia-android-ci/config/upgradeMacOS.sh 
+```
+
+#### LINUX
+
+Run script in `config` folder, Open terminal and enter `sh ` and move file `upgradeLinuxOS.sh` to terminal
+
+```
+sh /Users/pham.quy.hai/ProjectsCode/Framgia/framgia-android-ci/config/upgradeLinuxOS.sh 
+```
