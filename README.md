@@ -64,7 +64,7 @@ Version : 1.0.1
 
 Date : 11/03/2016
 
-Are there any errors in these config, please feedback at [https://goo.gl/O2CX0D](https://goo.gl/O2CX0D)
+Are there any errors in these config, please feedback at [https://goo.gl/yOzBx5](https://goo.gl/yOzBx5)
 
 ## Upgrade config version
 
