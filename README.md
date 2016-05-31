@@ -1,44 +1,19 @@
 ## How to setup ?
 
-### 1. Copy `config` folder into root folder of project
-### 2. Edit `build.gradle`
+### 1. Copy Files
+-	Copy `config` folder into root folder of project
+- 	Copy `checkci.gradle`into module folder. Default `app`
+
+### 2. Edit module `build.gradle`
 
 Open `build.gradle` of module app and edit like below code :
 
 ```
 ...
 apply plugin: 'com.android.application'
-apply plugin: 'checkstyle'
+apply from: "checkci.gradle"
 ...
-...
-...
-android {
-...
-...
-...
-lintOptions {
-        abortOnError false
-        lintConfig file("${project.rootDir}/config/lint/lint.xml")
-    }
-}
 
-task checkstyle(type: Checkstyle) {
-    ignoreFailures = true
-    showViolations = true
-    configFile file("${project.rootDir}/config/checkstyle/google_checks.xml")
-    configProperties.checkstyleSuppressionsPath = file("${project.rootDir}/config/checkstyle/suppressions.xml").absolutePath
-    source 'src'
-    include '**/*.java'
-    exclude '**/gen/**'
-    classpath = files()
-}
-
-dependencies {
-    checkstyle 'com.puppycrawl.tools:checkstyle:6.15'
-    ...
-    ...
-    ...
-}
 
 ```
 
