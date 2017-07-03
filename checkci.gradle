@@ -2,18 +2,15 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
+
 android {
     lintOptions {
         abortOnError false
         xmlReport true
         htmlReport false
         lintConfig file("${project.rootDir}/config/lint/lint.xml")
+        xmlOutput file("${project.rootDir}/.framgia-ci-reports/android-lint.xml")
     }
-}
-
-findbugs {
-    sourceSets = []
-    ignoreFailures = true
 }
 
 task checkstyle(type: Checkstyle) {
@@ -22,9 +19,9 @@ task checkstyle(type: Checkstyle) {
 
     ignoreFailures = true
     showViolations = true
-    configFile file("${project.rootDir}/config/checkstyle/google_checks.xml")
+    configFile file("${project.rootDir}/config/checkstyle/android-style.xml")
     configProperties.checkstyleSuppressionsPath = file("${project.rootDir}/config/checkstyle/suppressions.xml")
-    source 'src'
+    source 'src/main/java'
     include '**/*.java'
     exclude '**/gen/**'
     classpath = files()
@@ -32,6 +29,9 @@ task checkstyle(type: Checkstyle) {
     reports {
         xml.enabled = true
         html.enabled = false
+        xml {
+            destination "${project.rootDir}/.framgia-ci-reports/checkstyle.xml"
+        }
     }
 }
 
@@ -52,7 +52,10 @@ task findbugs(type: FindBugs) {
         xml.enabled = true
         html.enabled = false
         xml {
-            destination "${project.buildDir}/reports/findbugs/findbugs.xml"
+            destination "${project.rootDir}/.framgia-ci-reports/findbugs.xml"
+        }
+        html {
+            destination "${project.rootDir}/.framgia-ci-reports/findbugs.html"
         }
     }
 }
@@ -72,7 +75,7 @@ task pmd(type: Pmd) {
         xml.enabled = true
         html.enabled = false
         xml {
-            destination "${project.buildDir}/reports/pmd/pmd.xml"
+            destination "${project.rootDir}/.framgia-ci-reports/pmd.xml"
         }
     }
 }
@@ -81,11 +84,11 @@ task checkci {
     description 'Run Check CI'
     group 'checkci'
 
-    println "Please check reports in http://ci-pro.framgia.vn"
+    println "Please check reports in http://ci-reports.framgia.vn/"
 }
 
 checkci.dependsOn 'checkstyle', 'findbugs', 'pmd', 'lint'
 
 dependencies {
-    checkstyle 'com.puppycrawl.tools:checkstyle:6.15'
+    checkstyle 'com.puppycrawl.tools:checkstyle:8.0'
 }

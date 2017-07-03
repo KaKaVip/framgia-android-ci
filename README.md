@@ -1,8 +1,8 @@
 ## How to setup ?
 
 ### 1. Copy Files
--	Copy `config` folder into root folder of project
-- 	Copy `checkci.gradle`into module folder. Default `app`
+-	Copy `config` folder, `.drone.yml` and `.framgia-ci.yml` into root folder of project
+- 	Copy `checkci.gradle` into module folder. Default `app`
 
 ### 2. Edit module `build.gradle`
 
@@ -26,7 +26,6 @@ apply from: "checkci.gradle"
 
 #### For Android Lint
 `config/lint/lint` : Edit ignore for issue
-
 
 
 ## Version
